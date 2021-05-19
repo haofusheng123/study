@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" class="username">
+    <input type="password" class="password">
+
+    <button>提交</button>
+    <script>
+
+        let btn,user,pass;
+        const xhr = new XMLHttpRequest();
+        
+
+        init();
+
+        function init () {
+            getItem();
+            btn.addEventListener("click",clickHandler);
+        }
+
+        function getItem() {
+            btn = document.querySelector("button");
+            user = document.querySelector(".username");
+            pass = document.querySelector(".password");
+        }
+
+
+        function ajaxSend() {
+            xhr.open("POST","http://10.9.47.242:4000");
+            xhr.addEventListener("readystatechange",readyHandler);
+            xhr.send();
+        }
+
+        function clickHandler () {
+
+        }
+
+        function readyHandler () {
+
+        }
+
+
+    </script>
+</body>
+</html>
