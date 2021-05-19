@@ -6,7 +6,16 @@ const {parse} = require("url");
 const {routeSet} = require("./route.js");
 
 const serve = http.createServer(function (req,res) {
-    routeSet(req,res);
+    if (!path.extname(req.url)) {
+        routeSet(req,res);
+    }else {
+        let {pathname} = parse(req.url);
+        if (fs.existsSync(path.join(__dirname,pathname))) {
+            fs.createReadStream(path.join(__dirname,pathname)).pipe(res);
+        }else {
+            res.end(JSON.stringify({type:"error",code:404,detail:null}));
+        }
+    }
 });
 
 

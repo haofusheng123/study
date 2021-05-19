@@ -7,7 +7,9 @@
     <title>Document</title>
 </head>
 <body>
-    <div>请输入爬取地址：<input type="text"></div>
+    <!-- <div>请输入爬取地址：<input type="text"></div> -->
+    <!-- <div>请输入爬取类型：<input type="text"></div>
+    <div>请输入爬取类型：<input type="text"></div> -->
     <button>开始爬取</button>
     <script type="module">
 
@@ -35,7 +37,7 @@
                     url:msg.value
                 }
             });
-            console.log(data);
+            console.log(JSON.parse(data));
         }
 
         
