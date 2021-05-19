@@ -6,15 +6,12 @@
 
 
 
-
-
-
 const http = require("http");
 const path = require("path");
 const os = require("os");
 const url = require("url");
 
-const rootPath = path.join("E:/fsServe/WWW");
+const rootPath = path.join(__dirname,"../WWW");
 const servePath = path.join(__dirname,"../");
 
 const searchFile = require("searchFile");

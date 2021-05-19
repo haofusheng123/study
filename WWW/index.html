@@ -43,7 +43,7 @@
 
         function readyHandler (e) {
             if (this.readyState===4 && this.status===200) {
-                console.log(decodeURIComponent(this.response));
+                console.log(JSON.parse(this.response));
             }
         }
 

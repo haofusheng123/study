@@ -8,7 +8,8 @@ const route = require("./route.js");
 const observe = require("./observe.js");
 
 const serve = http.createServer(function (req,res) {
-    res.setHeader("Access-Control-Allow-Origin","")
+    res.setHeader("Content-Type","application/json");
+    res.setHeader("Access-Control-Allow-Origin","http://10.9.47.242:2000")
     observe.emit("route",[req,res]);
 });
 

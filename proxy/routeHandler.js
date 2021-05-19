@@ -7,7 +7,7 @@ module.exports = {
             user = JSON.parse(_data);
         });
         req.on("end",function () {
-            res.end(encodeURIComponent(user));
+            res.end(JSON.stringify({type:"succeed",code:200,detail:{name:"登陆成功",value:user}}));
         })
     }
 }
