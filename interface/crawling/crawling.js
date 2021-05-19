@@ -3,8 +3,10 @@ const fs = require("fs");
 const path = require("path");
 const {parse} = require("url");
 
+const {routeSet} = require("./route.js");
+
 const serve = http.createServer(function (req,res) {
-    res.end("爬取数据路由");
+    routeSet(req,res);
 });
 
 
