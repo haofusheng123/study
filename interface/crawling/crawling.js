@@ -4,20 +4,10 @@ const path = require("path");
 const {parse} = require("url");
 
 const serve = http.createServer(function (req,res) {
-
-    if (req.method===get) get(req,res);
-    else post(req,res);
-    
+    res.end("爬取数据路由");
 });
 
 
-function get(req,res) {
-
-}
-
-function post (req,res) {
-    res.end(req.url);
-}
 
 serve.listen(4000,"0.0.0.0",function () {
     console.log("请访问: http://10.9.47.242:4000");
