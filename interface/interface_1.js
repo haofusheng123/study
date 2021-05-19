@@ -16,7 +16,7 @@ function get(req,res) {
 }
 
 function post (req,res) {
-    // req.on("data", buffer => )
+    res.end(req.url);
 }
 
 serve.listen(4000,"0.0.0.0",function () {

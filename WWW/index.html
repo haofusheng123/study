@@ -32,18 +32,18 @@
 
 
         function ajaxSend() {
-            xhr.open("POST","http://10.9.47.242:4000");
+            xhr.open("POST","http://10.9.47.242:3000/login");
             xhr.addEventListener("readystatechange",readyHandler);
-            xhr.send(JSON.stringify({name:"haofusheng",pass:123456}));
+            xhr.send(JSON.stringify({username:user.value,password:pass.value}));
         }
 
         function clickHandler () {
-
+            ajaxSend();
         }
 
         function readyHandler (e) {
             if (this.readyState===4 && this.status===200) {
-                console.log(this.response);
+                console.log(decodeURIComponent(this.response));
             }
         }
 

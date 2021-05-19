@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        ul{
+            list-style: none;
+            overflow: hidden;
+            width: 80%;
+            margin: 40px auto;
+        }
+        ul li{
+            width: 150px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            float: left;
+            cursor: pointer;
+            line-height: 30px;
+            border-radius: 5px;
+            padding-left: 40px;
+            position: relative;
+        }
+        li img{
+            width: 22px;
+            position: absolute;
+            left: 10px;
+            top: calc(50% - 8px);
+        }
+        li:hover{
+            background: #eee;
+        }
+        .back-btn{
+            margin-left: 100px;
+            background: #ccc;
+            width: 100px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+        }
+        .text-show{
+            overflow: auto;
+            width: 400px;
+            height: 400px;
+        }
+        a{
+            color: black;
+            text-decoration: none;
+        }
+
+    </style>
+</head>
+<body>
+    <ul>{{filename}}</ul>
+</body>
+</html>
