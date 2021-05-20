@@ -48,5 +48,5 @@ function saveFile(src){
     https.get(url,function (res) {
         res.pipe(fs.createWriteStream(fileOUT));
     });
-    return {outDir:"http://10.9.47.242:3000/craw/"+path.join("img",fileName),hostDir:fileOUT};
+    return {outDir:"http://10.9.47.242:4000/"+path.join("img",fileName),hostDir:fileOUT};
 }

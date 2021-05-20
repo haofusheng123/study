@@ -7,7 +7,7 @@ const route = require("./route.js");
 const {isProxy} = require("./isProxy.js");
 
 const serve = http.createServer(function (req,res) {
-    res.setHeader("Content-Type","application/json");
+    // res.setHeader("Content-Type","application/json");
     res.setHeader("Access-Control-Allow-Origin","http://10.9.47.242:2000");
     isProxy(req.url.match(/^\/(\w+)\/.*?/i),req,res);
 });

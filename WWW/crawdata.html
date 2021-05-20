@@ -10,23 +10,30 @@
     <!-- <div>请输入爬取地址：<input type="text"></div> -->
     <!-- <div>请输入爬取类型：<input type="text"></div>
     <div>请输入爬取类型：<input type="text"></div> -->
-    <button>开始爬取</button>
+    <!-- <button>开始爬取</button> -->
+    <div class="goods-outer">
+
+    </div>
     <script type="module">
 
         import {post} from "./common/ajax.js";
-        let msg,btn;
+        import Goods from "./common/Goods.js";
+
+        let msg,btn,goodsOuter;
 
         init();
 
         function init() {
             getItem();
-
-            btn.addEventListener("click",startHandler);
+            startHandler()
+            // btn.addEventListener("click",startHandler);
+            document.addEventListener(Goods.DOWN_IMG,downImg);
         }
 
         function getItem () {
             msg=document.querySelector("input");
             btn=document.querySelector("button");
+            goodsOuter=document.querySelector(".goods-outer");
         }
 
         async function startHandler () {
@@ -34,10 +41,31 @@
                 method:"POST",
                 url:"http://10.9.47.242:3000/craw/getdata",
                 data:{
-                    url:msg.value
+                    
                 }
             });
-            console.log(JSON.parse(data));
+            renderHTML(JSON.parse(data));
+        }
+
+        async function downImg (e) {
+            let data = await post({
+                method:"POST",
+                url:e.imgSrc,
+                data:{
+                    type:"/downImg"
+                }
+            });
+            let result = JSON.parse(data);
+            if (result.type==="succeed") {
+                alert(result.detail.name);
+                console.log(result.detail.value);
+            }
+        }
+
+        function renderHTML (data) {
+            for(var i=0;i<data.length;i++) {
+                new Goods(data[i],goodsOuter);
+            }
         }
 
         

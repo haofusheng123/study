@@ -7,9 +7,6 @@ function routeSet(req,res) {
         case "/getdata":
             work.crawData(req,res);
             break;
-        case "/downimg":
-            work.crawData(req,res);
-            break;
     }
 }
 
