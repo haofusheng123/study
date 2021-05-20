@@ -7,11 +7,8 @@
     <title>Document</title>
 </head>
 <body>
-    <!-- <div>请输入爬取地址：<input type="text"></div> -->
-    <!-- <div>请输入爬取类型：<input type="text"></div>
-    <div>请输入爬取类型：<input type="text"></div> -->
-    <!-- <button>开始爬取</button> -->
     <div class="goods-outer">
+
 
     </div>
     <script type="module">
@@ -26,8 +23,7 @@
         function init() {
             getItem();
             startHandler()
-            // btn.addEventListener("click",startHandler);
-            document.addEventListener(Goods.DOWN_IMG,downImg);
+            // document.addEventListener(Goods.DOWN_IMG,downImg);
         }
 
         function getItem () {
@@ -47,20 +43,6 @@
             renderHTML(JSON.parse(data));
         }
 
-        async function downImg (e) {
-            let data = await post({
-                method:"POST",
-                url:e.imgSrc,
-                data:{
-                    type:"/downImg"
-                }
-            });
-            let result = JSON.parse(data);
-            if (result.type==="succeed") {
-                alert(result.detail.name);
-                console.log(result.detail.value);
-            }
-        }
 
         function renderHTML (data) {
             for(var i=0;i<data.length;i++) {

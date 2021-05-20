@@ -24,29 +24,37 @@ function getHtml(url) {
                 let goodsList = [];
                 let $ = cheerio.load(html);
                 const goods = $(".gl-warp > li");
-                goods.each((index,el) => {
+                goods.each(async (index,el) => {
                     let goodsObj = {};
                     let imgSrc = $(el).find(".p-img img").attr("data-lazy-img");
-                    let {outDir,hostDir}= saveFile(imgSrc);
+                    let {outDir,hostDir}=await saveFile(imgSrc);
                     goodsObj["src"]=outDir;
                     goodsObj["price"] = $(el).find(".p-price i").text();
                     goodsObj["title"] = $(el).find(".p-name em").text();
                     goodsObj["shop"] = $(el).find(".p-shop a").attr("title");
                     goodsList.push(goodsObj);
                     writeLog(hostDir,goodsObj["title"],goodsObj["price"]);
+                    if (index===goods.length-1) { //保证文件下载完成再进行返回
+                        fulfill(JSON.stringify(goodsList));
+                    }
                 });
-                fulfill(JSON.stringify(goodsList));
             });
         })
     })
 }
 
-function saveFile(src){
-    let url = "https:"+src;
-    let fileName = path.basename(url);
-    let fileOUT = path.join(__dirname,"img",fileName);
-    https.get(url,function (res) {
-        res.pipe(fs.createWriteStream(fileOUT));
-    });
-    return {outDir:"http://10.9.47.242:3000/craw/"+path.join("img",fileName),hostDir:fileOUT};
+function saveFile(src){ //保存每张图片
+    return new Promise ((fulfill,reject) => {
+        let url = "https:"+src;
+        let fileName = path.basename(url);
+        let fileOUT = path.join(__dirname,"img",fileName);
+        https.get(url,function (res) {
+            let readTo = fs.createWriteStream(fileOUT);
+            res.pipe(readTo);
+            readTo.on("finish",function () {
+                fulfill({outDir:"http://10.9.47.242:4000/"+path.join("img",fileName),hostDir:fileOUT});
+            })
+        });
+    })
+    
 }

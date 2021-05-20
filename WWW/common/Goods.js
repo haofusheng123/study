@@ -93,7 +93,8 @@ export default class Goods extends EventTarget{
                 </p>
                 <a class="info-text" href="javascript:void(0)" title="${data.title}">${data.title}</a>
                 <p class="appraise">
-                    <a href="javascript:void(0)">1万+</a>条评价
+                    <a href="javascript:void(0)">1万+条评价</a>
+                    <a style="float:right;position:relative;left: -10px;" href="${data.src}" download>下载</a>
                 </p>
                 <p class="shop">
                     <a class="shop-text" href="javascript:void(0)" title="${data.shop}">${data.shop}</a>

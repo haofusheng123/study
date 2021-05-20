@@ -15,10 +15,10 @@ module.exports.isProxy = function (pathList,req,res) {
             let url = "http://10.9.47.242:4000"+pathname.replace(/^\/craw/,"");
             http.get(url,(data) => {
                 let userPath=req.headers["origin"];
-                let rootdir = path.join(__dirname,"../WWW/downImg",path.basename(req.url));
+                // let rootdir = path.join(__dirname,"../WWW/downImg",path.basename(req.url));
                 if (userPath && path.extname(req.url)!=="") {
-                    data.pipe(fs.createWriteStream(rootdir));
-                    res.end(JSON.stringify({type:"succeed",code:200,detail:{name:"下载完成",value:rootdir}}));
+                    res.setHeader("Content-Type","application/octet-stream");
+                    data.pipe(res);
                     return;
                 }
                 data.pipe(res);
